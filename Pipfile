@@ -1,0 +1,18 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[packages]
+tensorflow = "*"
+pandas = "*"
+numpy = "*"
+matplotlib = "*"
+ipykernel = "*"
+blackcellmagic = "*"
+yellowbrick = "*"
+
+[requires]
+python_version = "3.7"
+
+[dev-packages]
