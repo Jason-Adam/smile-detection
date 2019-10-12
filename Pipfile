@@ -9,8 +9,8 @@ pandas = "*"
 numpy = "*"
 matplotlib = "*"
 ipykernel = "*"
-blackcellmagic = "*"
 yellowbrick = "*"
+blackcellmagic = "*"
 
 [requires]
 python_version = "3.7"
