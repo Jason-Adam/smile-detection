@@ -1,7 +1,7 @@
 # Smile Detection in Real Time Video Feed  
 The goal of the project is to build a convolutional neural network (CNN) that can predict if a person is smiling in real-time.  
 ## Dataset Overview  
-The dataset used for this project comes from the following repo ([hromi/SMILEsmileD](https://github.com/hromi/SMILEsmileD)). The SMILE dataset consists of xxxx tightly cropped grey-scale photos.  
+The dataset used for this project comes from the following repo ([hromi/SMILEsmileD](https://github.com/hromi/SMILEsmileD)). The SMILE dataset consists of tightly cropped grey-scale photos.  
 
 The repo can be cloned to your local machine with the following command  
 ```
