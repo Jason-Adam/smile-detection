@@ -10,6 +10,7 @@ numpy = "*"
 matplotlib = "*"
 ipykernel = "*"
 opencv-python = "*"
+pillow = "*"
 
 [requires]
 python_version = "3.7"
