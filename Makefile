@@ -1,4 +1,4 @@
-.PHONY: clean lint create_environment bind_kernel
+.PHONY: clean lint bind_kernel
 
 #################################################################################
 # GLOBALS                                                                       #
