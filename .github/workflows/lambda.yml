@@ -11,6 +11,6 @@ jobs:
       - name: decrypt secret
         run: ./decrypt_secret.sh
         env:
-          CREDS_PASSPHRASE: $
+          CREDS_PASSPHRASE: ${{ secrets.CREDS_PASSPHRASE }}
       - name: test printing to confirm
         run: cat $HOME/secrets/creds.json
