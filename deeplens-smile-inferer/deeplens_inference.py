@@ -107,12 +107,12 @@ def infinite_infer_run():
         # path is required.
         # model_path = '/opt/awscam/artifacts/mxnet_resnet18-catsvsdogs_FP32_FUSED.xml'
         # TODO: loade model artifact to Device prior to deploy
-        error, model_path = mo.optimize("smile-detection01", 150, 150)
+        error, model_path = mo.optimize("/opt/awscam/artifacts/saved_model.pb", 150, 150)
 
         # Load the model onto the GPU.
-        client.publish(topic=iot_topic, payload="Loading action cat-dog model")
+        client.publish(topic=iot_topic, payload="Loading action smile-detection model")
         model = awscam.Model(model_path, {"GPU": 1})
-        client.publish(topic=iot_topic, payload="Cat-Dog model loaded")
+        client.publish(topic=iot_topic, payload="smile detection model loaded")
 
         # Since this is a binary classifier only retrieve 2 classes.
         num_top_k = 2
@@ -151,4 +151,4 @@ def infinite_infer_run():
             client.publish(topic=iot_topic, payload=json.dumps(cloud_output))
 
     except Exception as ex:
-        client.publish(topic=iot_topic, payload="Error in cat-dog lambda: {}".format(ex))
+        client.publish(topic=iot_topic, payload="error in smile-inferer lambda: {}".format(ex))
