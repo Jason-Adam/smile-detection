@@ -1,0 +1,16 @@
+name: Credential Decrypt Test
+
+on: [push]
+
+jobs:
+  test-job:
+    name: Test Decrypt
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: decrypt secret
+        run: ./.github/scripts/decrypt_secret.sh
+        env:
+          CREDS_PASSPHRASE: $
+      - name: test printing to confirm
+        run: cat $HOME/secrets/creds.json
