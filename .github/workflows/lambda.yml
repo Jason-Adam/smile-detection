@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: decrypt secret
-        run: ./.github/smile-detection/decrypt_secret.sh
+        run: ./decrypt_secret.sh
         env:
           CREDS_PASSPHRASE: $
       - name: test printing to confirm
