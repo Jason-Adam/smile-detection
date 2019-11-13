@@ -155,3 +155,6 @@ def infinite_infer_run():
         client.publish(
             topic=iot_topic, payload="error in smile-inferer lambda: {}".format(ex)
         )
+
+
+infinite_infer_run()
