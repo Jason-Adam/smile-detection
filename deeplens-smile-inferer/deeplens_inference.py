@@ -10,10 +10,6 @@ import greengrasssdk
 import mo
 
 
-def lambda_handler(event, context):
-    return
-
-
 class LocalDisplay(Thread):
     """ Class for facilitating the local display of inference results
         (as images). The class is designed to run on its own thread. In
