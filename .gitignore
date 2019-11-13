@@ -110,3 +110,4 @@ data/
 # Credential files
 creds.json
 .vscode/
+*.zip
