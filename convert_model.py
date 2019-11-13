@@ -10,7 +10,8 @@ def main():
     args = parser.parse_args()
     path_folder = args.model.split(".")
     path_folder = f"/tmp/{path_folder[0].split('/')[1]}/1/"
-    tf.saved_model(args.model, path_folder)
+    model = tf.keras.models.load_model(args.model)
+    tf.saved_model.save(model, path_folder)
 
 
 if __name__ == "__main__":
