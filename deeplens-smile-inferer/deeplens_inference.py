@@ -2,10 +2,10 @@ import json
 import os
 from threading import Event, Thread
 
+import cv2
 import numpy as np
 
 import awscam
-import cv2
 import greengrasssdk
 import mo
 
@@ -93,7 +93,7 @@ def infinite_infer_run():
         # path is required.
         # model_path = '/opt/awscam/artifacts/mxnet_resnet18-catsvsdogs_FP32_FUSED.xml'
         error, model_path = mo.optimize(
-            "/opt/awscam/artifacts/saved_model.pb", 150, 150
+            model_name="saved_model", input_width=150, input_height=150, platform="tf"
         )
 
         # Load the model onto the GPU.
@@ -148,9 +148,7 @@ def infinite_infer_run():
             client.publish(topic=iot_topic, payload=json.dumps(cloud_output))
 
     except Exception as ex:
-        client.publish(
-            topic=iot_topic, payload="error in smile-inferer lambda: {}".format(ex)
-        )
+        client.publish(topic=iot_topic, payload="error in smile-inferer lambda: {}".format(ex))
 
 
 infinite_infer_run()

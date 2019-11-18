@@ -9,9 +9,10 @@ def main():
     parser.add_argument("-m", "--model", type=str, help="input path to h5 model")
     args = parser.parse_args()
     path_folder = args.model.split(".")
-    path_folder = f"/tmp/{path_folder[0].split('/')[1]}/1/"
+    path_folder = path_folder[0].split("/")[1]
+    save_folder = f"saved_model/{path_folder}/"
     model = tf.keras.models.load_model(args.model)
-    tf.saved_model.save(model, path_folder)
+    tf.saved_model.save(model, save_folder)
 
 
 if __name__ == "__main__":
