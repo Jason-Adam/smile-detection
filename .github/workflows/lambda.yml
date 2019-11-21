@@ -1,16 +1,23 @@
-name: Credential Decrypt Test
+name: Master CI/CD
 
-on: [push]
+on:
+  push:
+    branches:
+      - master
 
 jobs:
-  test-job:
-    name: Test Decrypt
+  primary:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - name: decrypt secret
+      - name: decrypt config
         run: ./decrypt_secret.sh
         env:
           CREDS_PASSPHRASE: ${{ secrets.CREDS_PASSPHRASE }}
-      - name: test printing to confirm
-        run: cat $HOME/secrets/creds.json
+      - name: install-cli
+        run : |
+          curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
+          unzip awscli-bundle.zip
+          ./awscli-bundle/install -b ~/bin/aws
+      - name: test-cli
+        run: aws lambda list-functions
