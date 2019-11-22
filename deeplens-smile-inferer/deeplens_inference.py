@@ -148,7 +148,9 @@ def infinite_infer_run():
             client.publish(topic=iot_topic, payload=json.dumps(cloud_output))
 
     except Exception as ex:
-        client.publish(topic=iot_topic, payload="error in smile-inferer lambda: {}".format(ex))
+        client.publish(
+            topic=iot_topic, payload="error in smile-inferer lambda: {}".format(ex)
+        )
 
 
 infinite_infer_run()
