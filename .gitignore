@@ -112,3 +112,4 @@ creds.json
 .vscode/
 *.zip
 config
+.vim/
