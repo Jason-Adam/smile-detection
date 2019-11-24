@@ -92,9 +92,10 @@ def infinite_infer_run():
         # The sample projects come with optimized artifacts, hence only the artifact
         # path is required.
         # model_path = '/opt/awscam/artifacts/mxnet_resnet18-catsvsdogs_FP32_FUSED.xml'
-        error, model_path = mo.optimize(
-            model_name="saved_model", input_width=150, input_height=150, platform="tf"
-        )
+        model_path = "/opt/awscam/artifacts/frozen_model.xml"
+        # error, model_path = mo.optimize(
+        #     model_name="frozen_model", input_width=150, input_height=150, platform="tf"
+        # )
 
         # Load the model onto the GPU.
         client.publish(topic=iot_topic, payload="loading action smile-detection model")
@@ -121,24 +122,14 @@ def infinite_infer_run():
             # the parser API, note it is possible to get the output of doInference
             # and do the parsing manually, but since it is a classification model,
             # a simple API is provided.
-            parsed_inference_results = model.parseResult(
-                model_type, model.doInference(frame_resize)
-            )
+            parsed_inference_results = model.parseResult(model_type, model.doInference(frame_resize))
             # Get top k results with highest probabilities
             top_k = parsed_inference_results[model_type][0:num_top_k]
             # Add the label of the top result to the frame used by local display.
             # See https://docs.opencv.org/3.4.1/d6/d6e/group__imgproc__draw.html
             # for more information about the cv2.putText method.
             # Method signature: image, text, origin, font face, font scale, color, and thickness
-            cv2.putText(
-                frame,
-                output_map[top_k[0]["label"]],
-                (10, 70),
-                cv2.FONT_HERSHEY_SIMPLEX,
-                3,
-                (255, 165, 20),
-                8,
-            )
+            cv2.putText(frame, output_map[top_k[0]["label"]], (10, 70), cv2.FONT_HERSHEY_SIMPLEX, 3, (255, 165, 20), 8)
             # Set the next frame in the local display stream.
             local_display.set_frame_data(frame)
             # Send the top k results to the IoT console via MQTT
@@ -148,9 +139,7 @@ def infinite_infer_run():
             client.publish(topic=iot_topic, payload=json.dumps(cloud_output))
 
     except Exception as ex:
-        client.publish(
-            topic=iot_topic, payload="error in smile-inferer lambda: {}".format(ex)
-        )
+        client.publish(topic=iot_topic, payload="error in smile-inferer lambda: {}".format(ex))
 
 
 infinite_infer_run()
