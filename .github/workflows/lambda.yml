@@ -1,4 +1,4 @@
-name: Master CI/CD
+name: Update Lambda Function
 
 on:
   push:
@@ -19,5 +19,12 @@ jobs:
           curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
           unzip awscli-bundle.zip
           ./awscli-bundle/install -b ~/bin/aws
-      - name: test-cli
-        run: aws lambda list-functions
+      - name: zip-lambda
+        run: zip -r deep_lens_smile_inferer.zip deep-lens-smile-inferer
+      - name: upload-new-lambda
+        run: |
+          aws lambda update-function-code \
+          --function-name arn:aws:lambda:us-east-1:880540780340:function:deeplens-smile-inferer \
+          --zip-file deep_lens_smile_inferer.zip \
+          --publish true \
+          --dry-run true

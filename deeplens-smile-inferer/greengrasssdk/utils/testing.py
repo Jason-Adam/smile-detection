@@ -4,6 +4,7 @@
 
 import json
 from functools import wraps
+
 from greengrass_common.env_vars import MY_FUNCTION_ARN
 
 

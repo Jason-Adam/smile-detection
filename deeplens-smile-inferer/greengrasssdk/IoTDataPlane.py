@@ -6,12 +6,12 @@ import base64
 import json
 import logging
 
-from greengrasssdk import Lambda
 from greengrass_common.env_vars import (
-    SHADOW_FUNCTION_ARN,
-    ROUTER_FUNCTION_ARN,
     MY_FUNCTION_ARN,
+    ROUTER_FUNCTION_ARN,
+    SHADOW_FUNCTION_ARN,
 )
+from greengrasssdk import Lambda
 
 # Log messages in the SDK are part of customer's log because they're helpful for debugging
 # customer's lambdas. Since we configured the root logger to log to customer's log and set the
