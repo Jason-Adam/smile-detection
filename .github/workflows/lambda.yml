@@ -20,10 +20,12 @@ jobs:
           unzip awscli-bundle.zip
           ./awscli-bundle/install -b ~/bin/aws
       - name: zip-lambda
-        run: zip -r deeplens_smile_inferer.zip deeplens-smile-inferer/.
+        run: |
+          cd deep-lens-smile-inferer
+          zip -r deeplens_smile_inferer.zip .
       - name: upload-new-lambda
         run: >
           aws lambda update-function-code
           --function-name arn:aws:lambda:us-east-1:880540780340:function:deeplens-smile-inferer
-          --zip-file fileb://deeplens_smile_inferer.zip
+          --zip-file fileb://deep-lens-smile-inferer/deeplens_smile_inferer.zip
           --publish
