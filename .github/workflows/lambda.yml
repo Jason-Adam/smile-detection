@@ -21,7 +21,6 @@ jobs:
           ./awscli-bundle/install -b ~/bin/aws
       - name: zip-lambda
         run: |
-          ls
           cd deeplens-smile-inferer
           zip -r deeplens_smile_inferer.zip .
       - name: upload-new-lambda
