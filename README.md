@@ -11,9 +11,6 @@ git clone https://github.com/hromi/SMILEsmileD.git
 ## Project Architecture
 Below is a visual project flow utilizing the Deep Lens and accompanying AWS ecosystem for inference.
 ![](ref/project_flow.png)
-## Model Architecture
-This project utlizes Tensorflow (specifically Keras) for the construction and training of the CNN. The CNN consists of the following architecture:  
-![](img/model_arch.png)  
 
 ## Secret Management
 This repo utilizes github actions for automatically pushing a new version of the labmda function to AWS. The actions pipeline will decrypt the `config.gpg` file based on a secret called `CREDS_PASSPHRASE` that you must store in `settings/secrets` within the repo. The credentials in the file can then be utilized in the code to push the new version to AWS. The `config` file must look like this:
