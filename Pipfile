@@ -11,7 +11,7 @@ ipykernel = "*"
 opencv-python = "*"
 pillow = "*"
 pathlib = "*"
-tensorflow = "==1.14.0"
+tensorflow = "==2.0.3"
 
 [requires]
 python_version = "3.7"
